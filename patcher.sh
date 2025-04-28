@@ -1,3 +1,4 @@
+#!/bin/sh
 # vars
 
 SUCCESS="Success! Reboot to apply."
@@ -56,6 +57,12 @@ elif [[ -f "$HOME/.zshrc" ]]; then
         patch_nv
     else
         patch_mesa
+    fi
+elif [ "$SHELL" = "$(which fish)" ] || [ "$FISH_VERSION" ]; then
+    if [[ $GPU == *' nvidia '* ]]; then
+        set -x --universal __GL_SHADER_DISK_CACHE_SIZE=12000000000
+    else
+        set -x --universal MESA_SHADER_CACHE_MAX_SIZE=12G
     fi
 else
     echo "No valid shell found, aborting..."
