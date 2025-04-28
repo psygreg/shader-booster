@@ -20,3 +20,5 @@ Compatible only with systems running **bash** or **zsh** as their default shell.
 `cd shader-patcherx`\
 `chmod +x patcher.sh`\
 `./patcher.sh`
+
+You can delete the "shader-patcherx" folder once finished. 
