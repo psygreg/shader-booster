@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # vars
 
 SUCCESS="Success! Reboot to apply."
