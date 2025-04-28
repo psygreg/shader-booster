@@ -11,7 +11,7 @@ Compatible only with systems running **bash**, **zsh** or **fish** as their defa
 - Linux Mint
 - CachyOS
 - Fedora (official and spins, except atomic)
-- openSUSE (Leap and Tumbleweed)
+- openSUSE (Tumbleweed)
 - MX Linux (AHS only)
 - Arch Linux
 - Zorin OS
