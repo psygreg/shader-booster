@@ -1,0 +1,2 @@
+# increase AMD and Intel cache size to 12GB
+export MESA_SHADER_CACHE_MAX_SIZE=12G
