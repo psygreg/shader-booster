@@ -9,10 +9,7 @@ Compatible only with systems running **bash** or **zsh** as their default shell.
 
 - Ubuntu (base and official flavours)
 - Linux Mint
-
-## Systems known to be incompatible
-
-- CachyOS (uses **fish**, for which I'm not currently able to port the patch)
+- CachyOS
 
 ## Usage
 
