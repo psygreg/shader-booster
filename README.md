@@ -5,11 +5,19 @@ Effective on decreasing loading times and stutters, specially in recently releas
 
 Compatible only with systems running **bash**, **zsh** or **fish** as their default shell.
 
-## Systems known to be compatible
+## Systems known to be compatible on their default settings
 
 - Ubuntu (base and official flavours)
 - Linux Mint
 - CachyOS
+- Fedora (official and spins, except atomic)
+- openSUSE (Leap and Tumbleweed)
+- MX Linux
+- Arch Linux
+- Zorin OS
+- Manjaro
+- Big Linux
+- Debian
 
 ## Usage
 
