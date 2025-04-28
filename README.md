@@ -1,7 +1,7 @@
 # shader-patcherx
 ### Simple bash script to increase the shader cache size globally on your Linux system.
 
-Effective on decreasing loading times and stutters, specially in recently release games. 
+Effective on decreasing loading times and stutters, specially in recently released games. 
 
 Compatible only with systems running **bash** or **zsh** as their default shell.
 
