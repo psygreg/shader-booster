@@ -5,7 +5,7 @@ Effective on decreasing loading times and stutters, specially in recently releas
 
 Compatible only with systems running **bash**, **zsh** or **fish** as their default shell.
 
-## Systems known to be compatible on their default settings
+## Systems known to be compatible on their default settings and latest versions
 
 - Ubuntu (base and official flavours)
 - Linux Mint
