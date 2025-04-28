@@ -12,7 +12,7 @@ Compatible only with systems running **bash**, **zsh** or **fish** as their defa
 - CachyOS
 - Fedora (official and spins, except atomic)
 - openSUSE (Leap and Tumbleweed)
-- MX Linux
+- MX Linux (AHS only)
 - Arch Linux
 - Zorin OS
 - Manjaro
