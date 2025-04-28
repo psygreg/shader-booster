@@ -3,7 +3,7 @@
 
 Effective on decreasing loading times and stutters, specially in recently released games. 
 
-Compatible only with systems running **bash** or **zsh** as their default shell.
+Compatible only with systems running **bash**, **zsh** or **fish** as their default shell.
 
 ## Systems known to be compatible
 
