@@ -3,13 +3,21 @@
 
 Effective on decreasing loading times and stutters, specially in recently released games. 
 
-Compatible only with systems running **bash**, **zsh** or **fish** as their default shell.
+Compatible only with systems running **bash**, **zsh** or **fish** as their default shell, and running either the Nvidia drivers **version 535 or later** or **Mesa 23.1 or later**.
 
-## Systems known to be compatible
+## Systems known to be compatible on their default settings and latest versions
 
 - Ubuntu (base and official flavours)
 - Linux Mint
 - CachyOS
+- Fedora (official and spins, except atomic)
+- openSUSE (Tumbleweed)
+- MX Linux (AHS only)
+- Arch Linux
+- Zorin OS
+- Manjaro
+- Big Linux
+- Debian
 
 ## Usage
 
