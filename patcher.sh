@@ -44,6 +44,7 @@ if [ "$SHELL" = "$(which fish)" ] || [ "$FISH_VERSION" ]; then
         sleep 5
         exit 0
     else
+        set -x --universal AMD_VULKAN_ICD 'RADV'
         set -x --universal MESA_SHADER_CACHE_MAX_SIZE '12G'
         echo "$SUCCESS"
         sleep 5
