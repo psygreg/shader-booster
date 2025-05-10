@@ -40,22 +40,28 @@ shopt -s nocasematch
 if [[ -f "$HOME/.bash_profile" ]]; then
     DEST_FILE="$HOME/.bash_profile"
     if [[ $GPU == *' nvidia '* ]]; then
+        wget https://github.com/psygreg/shader-patcherx/blob/main/patch-nvidia;
         patch_nv
     else
+        wget https://github.com/psygreg/shader-patcherx/blob/main/patch-mesa;
         patch_mesa
     fi
 elif [[ -f "$HOME/.profile" ]]; then
     DEST_FILE="$HOME/.profile"
     if [[ $GPU == *' nvidia '* ]]; then
+        wget https://github.com/psygreg/shader-patcherx/blob/main/patch-nvidia;
         patch_nv
     else
+        wget https://github.com/psygreg/shader-patcherx/blob/main/patch-mesa;
         patch_mesa
     fi
 elif [[ -f "$HOME/.zshrc" ]]; then
     DEST_FILE="$HOME/.zshrc"
     if [[ $GPU == *' nvidia '* ]]; then
+        wget https://github.com/psygreg/shader-patcherx/blob/main/patch-nvidia;
         patch_nv
     else
+        wget https://github.com/psygreg/shader-patcherx/blob/main/patch-mesa;
         patch_mesa
     fi
 else
