@@ -9,7 +9,7 @@ Compatible only with systems running **bash**, **zsh** or **fish** as their defa
 
 - Ubuntu (base and official flavours)
 - Linux Mint
-- CachyOS
+- CachyOS (use `patcher-cachy.fish` instead of `patcher.sh`)
 - Fedora (official and spins, except atomic)
 - openSUSE (Tumbleweed)
 - MX Linux (AHS only)
@@ -21,9 +21,15 @@ Compatible only with systems running **bash**, **zsh** or **fish** as their defa
 
 ## Usage
 
+### Without terminal
+- Download the proper script for your system on [Releases](https://github.com/psygreg/shader-patcherx/releases).
+- Right-click the file, go to Properties on the submenu then set it to run as a program.
+- Double click it to run.
+
+### On terminal
 `git clone https://github.com/psygreg/shader-patcherx.git`\
 `cd shader-patcherx`\
-`chmod +x patcher.sh`\
-`./patcher.sh`
+`chmod +x patcher.sh` for most systems; or `chmod +x patcher-cachy.fish` for *CachyOS* \
+`./patcher.sh` for most systems; or `./patcher-cachy.fish` for *CachyOS*
 
-You can delete the "shader-patcherx" folder once finished. 
+**You can delete the "shader-patcherx" folder once finished.**
