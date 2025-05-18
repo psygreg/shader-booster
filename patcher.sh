@@ -3,38 +3,28 @@
 # functions
 
 patch_nv () {
-    PATCH_CONTENT=$(<"${HOME}/patch-nvidia")
-    if grep -Fxf "$PATCH_CONTENT" "$DEST_FILE" > /dev/null; then
-        whiptail --title "Shader Booster" --msgbox "System already patched. Nothing to do" 8 78
-        rm ${HOME}/patch-nvidia
-        exit 0
-    else
-        cat "${HOME}/patch-nvidia" >> "$DEST_FILE"
-        whiptail --title "Shader Booster" --msgbox "Success! Reboot to apply." 8 78
-        rm ${HOME}/patch-nvidia
-        exit 0
-    fi
+
+    cat "${HOME}/patch-nvidia" >> "${DEST_FILE}"
+    whiptail --title "Shader Booster" --msgbox "Success! Reboot to apply." 8 78
+    rm ${HOME}/patch-nvidia
+    exit 0
+
 }
 patch_mesa () {
-    PATCH_CONTENT=$(<"$HOME/patch-mesa")
-    if grep -Fxf "$PATCH_CONTENT" "$DEST_FILE" > /dev/null; then
-        whiptail --title "Shader Booster" --msgbox "System already patched. Nothing to do" 8 78
-        rm ${HOME}/patch-mesa
-        exit 0
-    else
-        cat "${HOME}/patch-mesa" >> "$DEST_FILE"
-        whiptail --title "Shader Booster" --msgbox "Success! Reboot to apply." 8 78
-        rm ${HOME}/patch-mesa
-        exit 0
-    fi
+
+    cat "${HOME}/patch-mesa" >> "${DEST_FILE}"
+    whiptail --title "Shader Booster" --msgbox "Success! Reboot to apply." 8 78
+    rm ${HOME}/patch-mesa
+    exit 0
+
 }
 
 # runtime
 
 sudo apt install wget whiptail
 GPU=$(lspci | grep -i '.* vga .* nvidia .*')
-if [[ -f "$HOME/.bash_profile" ]]; then
-    DEST_FILE="$HOME/.bash_profile"
+if [[ -f "${HOME}/.bash_profile" ]]; then
+    DEST_FILE="${HOME}/.bash_profile"
     if [[ $GPU == *' nvidia '* ]]; then
         cd $HOME
         wget -O patch-nvidia https://raw.githubusercontent.com/psygreg/shader-booster/refs/heads/main/patch-nvidia;
@@ -45,7 +35,7 @@ if [[ -f "$HOME/.bash_profile" ]]; then
         patch_mesa
     fi
 elif [[ -f "$HOME/.profile" ]]; then
-    DEST_FILE="$HOME/.profile"
+    DEST_FILE="${HOME}/.profile"
     if [[ $GPU == *' nvidia '* ]]; then
         cd $HOME
         wget -O patch-nvidia https://raw.githubusercontent.com/psygreg/shader-booster/refs/heads/main/patch-nvidia;
@@ -56,7 +46,7 @@ elif [[ -f "$HOME/.profile" ]]; then
         patch_mesa
     fi
 elif [[ -f "$HOME/.zshrc" ]]; then
-    DEST_FILE="$HOME/.zshrc"
+    DEST_FILE="${HOME}/.zshrc"
     if [[ $GPU == *' nvidia '* ]]; then
         cd $HOME
         wget -O patch-nvidia https://raw.githubusercontent.com/psygreg/shader-booster/refs/heads/main/patch-nvidia;
