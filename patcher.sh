@@ -3,28 +3,28 @@
 # functions
 
 patch_nv () {
-    PATCH_CONTENT=$(<"$HOME/patch-nvidia")
-    if grep -Fxq "$PATCH_CONTENT" "$DEST_FILE"; then
+    PATCH_CONTENT=$(<"${HOME}/patch-nvidia")
+    if grep -Fxf "$PATCH_CONTENT" "$DEST_FILE" > /dev/null; then
         whiptail --title "Shader Booster" --msgbox "System already patched. Nothing to do" 8 78
-        rm patch-nvidia
+        rm ${HOME}/patch-nvidia
         exit 0
     else
-        cat "$HOME/patch-nvidia" >> "$DEST_FILE"
+        cat "${HOME}/patch-nvidia" >> "$DEST_FILE"
         whiptail --title "Shader Booster" --msgbox "Success! Reboot to apply." 8 78
-        rm $HOME/patch-nvidia
+        rm ${HOME}/patch-nvidia
         exit 0
     fi
 }
 patch_mesa () {
     PATCH_CONTENT=$(<"$HOME/patch-mesa")
-    if grep -Fxq "$PATCH_CONTENT" "$DEST_FILE"; then
+    if grep -Fxf "$PATCH_CONTENT" "$DEST_FILE" > /dev/null; then
         whiptail --title "Shader Booster" --msgbox "System already patched. Nothing to do" 8 78
-        rm patch-mesa
+        rm ${HOME}/patch-mesa
         exit 0
     else
-        cat "$HOME/patch-mesa" >> "$DEST_FILE"
+        cat "${HOME}/patch-mesa" >> "$DEST_FILE"
         whiptail --title "Shader Booster" --msgbox "Success! Reboot to apply." 8 78
-        rm $HOME/patch-mesa
+        rm ${HOME}/patch-mesa
         exit 0
     fi
 }
@@ -33,7 +33,6 @@ patch_mesa () {
 
 sudo apt install wget whiptail
 GPU=$(lspci | grep -i '.* vga .* nvidia .*')
-shopt -s nocasematch
 if [[ -f "$HOME/.bash_profile" ]]; then
     DEST_FILE="$HOME/.bash_profile"
     if [[ $GPU == *' nvidia '* ]]; then
