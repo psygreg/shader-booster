@@ -3,7 +3,7 @@
 # functions
 
 patch_nv () {
-    PATCH_CONTENT=$(<"patch-nvidia")
+    PATCH_CONTENT=$(<"$HOME/patch-nvidia")
     if grep -Fxq "$PATCH_CONTENT" "$DEST_FILE"; then
         whiptail --title "Shader Booster" --msgbox "System already patched. Nothing to do" 8 78
         rm patch-nvidia
@@ -16,13 +16,13 @@ patch_nv () {
     fi
 }
 patch_mesa () {
-    PATCH_CONTENT=$(<"patch-mesa")
+    PATCH_CONTENT=$(<"$HOME/patch-mesa")
     if grep -Fxq "$PATCH_CONTENT" "$DEST_FILE"; then
         whiptail --title "Shader Booster" --msgbox "System already patched. Nothing to do" 8 78
         rm patch-mesa
         exit 0
     else
-        cat "patch-mesa" >> "$DEST_FILE"
+        cat "$HOME/patch-mesa" >> "$DEST_FILE"
         whiptail --title "Shader Booster" --msgbox "Success! Reboot to apply." 8 78
         rm patch-mesa
         exit 0
