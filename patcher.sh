@@ -9,9 +9,9 @@ patch_nv () {
         rm patch-nvidia
         exit 0
     else
-        cat "patch-nvidia" >> "$DEST_FILE"
+        cat "$HOME/patch-nvidia" >> "$DEST_FILE"
         whiptail --title "Shader Booster" --msgbox "Success! Reboot to apply." 8 78
-        rm patch-nvidia
+        rm $HOME/patch-nvidia
         exit 0
     fi
 }
@@ -24,7 +24,7 @@ patch_mesa () {
     else
         cat "$HOME/patch-mesa" >> "$DEST_FILE"
         whiptail --title "Shader Booster" --msgbox "Success! Reboot to apply." 8 78
-        rm patch-mesa
+        rm $HOME/patch-mesa
         exit 0
     fi
 }
