@@ -4,12 +4,37 @@
 # dependency checker
 depcheck () {
 
-    local dependencies=(wget whiptail)
+    local dependencies=()
+    if [[ "$ID_LIKE" =~ (suse|rhel|fedora) ]]; then
+        dependencies=(wget newt)
+    elif [ "$ID" == "arch" ]; then
+        dependencies=(wget newt)
+    elif [[ "$ID_LIKE" =~ (ubuntu|debian) ]]; then
+        dependencies=(wget whiptail)
+    fi
     for dep in "${dependencies[@]}"; do
-        if dpkg -s "$dep" 2>/dev/null 1>&2; then
-            continue
-        else
-            sudo apt install -y "$dep"
+        if [[ "$ID_LIKE" =~ (suse|rhel|fedora) ]]; then
+            if rpm -qi "$dep" 2>/dev/null 1>&2; then
+                continue
+            else
+                if [ "$ID_LIKE" == "suse" ]; then
+                    sudo zypper in "$dep" -y
+                else
+                    sudo dnf in "$dep" -y
+                fi
+            fi
+        elif [ "$ID" == "arch" ]; then
+            if pacman -Qi "$dep" 2>/dev/null 1>&2; then
+                continue
+            else
+                sudo pacman -S --noconfirm "$dep"
+            fi
+        elif [[ "$ID_LIKE" =~ (ubuntu|debian) ]]; then
+            if dpkg -s "$dep" 2>/dev/null 1>&2; then
+                continue
+            else
+                sudo apt install -y "$dep"
+            fi
         fi
     done
 
@@ -42,6 +67,7 @@ patch_mesa () {
 }
 
 # runtime
+. /etc/os-release
 depcheck
 GPU=$(lspci | grep -i '.* vga .* nvidia .*')
 if [ ! -f ${HOME}/.booster ]; then
