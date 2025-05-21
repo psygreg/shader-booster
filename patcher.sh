@@ -8,7 +8,7 @@ depcheck () {
     if [[ "$ID_LIKE" =~ (suse|rhel|fedora) ]]; then
         dependencies=(wget newt)
     elif [ "$ID" == "arch" ]; then
-        dependencies=(wget newt)
+        dependencies=(wget libnewt)
     elif [[ "$ID_LIKE" =~ (ubuntu|debian) ]]; then
         dependencies=(wget whiptail)
     fi
