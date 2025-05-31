@@ -2,7 +2,6 @@
 
 # runtime
 set GPU $(lspci | grep -i '.* vga .* nvidia .')
-shopt -s nocasematch
 if command -v fish &>/dev/null; then
     if [[ $GPU == *' nvidia '* ]]; then
         set -x --universal __GL_SHADER_DISK_CACHE_SIZE '12000000000'
