@@ -11,9 +11,9 @@ if command -v fish &>/dev/null; then
         set -x --universal AMD_VULKAN_ICD 'RADV'
         set -x --universal MESA_SHADER_CACHE_MAX_SIZE '12G'
         exit 0
-    fi
+    end
 else
     echo "If you're not running this on CachyOS, use the standard 'patcher.sh' for bash and zsh."
     sleep 5
     exit 1
-fi
+end
