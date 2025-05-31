@@ -1,7 +1,7 @@
 #!/bin/fish
 
 # runtime
-GPU=$(lspci | grep -i '.* vga .* nvidia .*')
+set GPU $(lspci | grep -i '.* vga .* nvidia .')
 shopt -s nocasematch
 if command -v fish &>/dev/null; then
     if [[ $GPU == *' nvidia '* ]]; then
