@@ -1,18 +1,13 @@
 #!/bin/fish
 
 # runtime
-set GPU $(lspci | grep -i '.* vga .* nvidia .')
-if command -v fish &>/dev/null; then
-    if [[ $GPU == *' nvidia '* ]]; then
-        set -x --universal __GL_SHADER_DISK_CACHE_SIZE '12000000000'
-        exit 0
-    else
-        set -x --universal AMD_VULKAN_ICD 'RADV'
-        set -x --universal MESA_SHADER_CACHE_MAX_SIZE '12G'
-        exit 0
-    end
+set GPU (lspci | grep -i 'vga' | grep -i 'nvidia')
+
+if string match -q '*nvidia*' "$GPU"
+    set -x --universal __GL_SHADER_DISK_CACHE_SIZE '12000000000'
 else
-    echo "If you're not running this on CachyOS, use the standard 'patcher.sh' for bash and zsh."
-    sleep 5
-    exit 1
+    set -x --universal AMD_VULKAN_ICD 'RADV'
+    set -x --universal MESA_SHADER_CACHE_MAX_SIZE '12G'
 end
+
+exit 0
