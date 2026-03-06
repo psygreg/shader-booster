@@ -1,9 +1,22 @@
 #!/bin/bash
-# functions
+# fetch files
+GITHUB_BASE="https://raw.githubusercontent.com/psygreg/shader-booster/main"
+GITEA_BASE="https://git.linux.toys/psygreg/shader-booster/raw/branch/main"
+fetch_with_fallback () {
+    local filename="$1"
+    local output_file="$2"
+    if wget -q -O "$output_file" "${GITHUB_BASE}/${filename}" 2>/dev/null; then
+        return 0
+    fi
+    if wget -q -O "$output_file" "${GITEA_BASE}/${filename}" 2>/dev/null; then
+        return 0
+    fi
+
+    return 1
+}
 
 # dependency checker
 depcheck () {
-
     local dependencies=()
     if [[ "$ID_LIKE" =~ (suse|rhel|fedora) ]] || [[ "$ID" =~ (fedora|suse) ]]; then
         dependencies=(wget newt)
@@ -37,31 +50,36 @@ depcheck () {
             fi
         fi
     done
-
 }
 
 # patch for Nvidia GPUs
 patch_nv () {
-
     cd $HOME
-    wget -O patch-nvidia https://codeberg.org/psygreg/shader-booster/raw/branch/main/patch-nvidia;
-    echo -e "\n$(cat ${HOME}/patch-nvidia)" | sudo tee -a "${DEST_FILE}" > /dev/null
-    rm ${HOME}/patch-nvidia
+    if fetch_with_fallback "patch-nvidia" "${HOME}/patch-nvidia"; then
+        echo -e "\n$(cat ${HOME}/patch-nvidia)" | sudo tee -a "${DEST_FILE}" > /dev/null
+        rm ${HOME}/patch-nvidia
+    else
+        whiptail --title "Shader Booster" --msgbox "Failed to fetch patch-nvidia." 8 78
+        exit 1
+    fi
 }
 
 # patch for Mesa-driven GPUs
 patch_mesa () {
 
     cd $HOME
-    wget -O patch-mesa https://codeberg.org/psygreg/shader-booster/raw/branch/main/patch-mesa;
-    echo -e "\n$(cat ${HOME}/patch-mesa)" | sudo tee -a "${DEST_FILE}" > /dev/null
-    rm ${HOME}/patch-mesa
+    if fetch_with_fallback "patch-mesa" "${HOME}/patch-mesa"; then
+        echo -e "\n$(cat ${HOME}/patch-mesa)" | sudo tee -a "${DEST_FILE}" > /dev/null
+        rm ${HOME}/patch-mesa
+    else
+        whiptail --title "Shader Booster" --msgbox "Failed to fetch patch-mesa." 8 78
+        exit 1
+    fi
 }
 
 # --- Início do Runtime ---
 . /etc/os-release
 depcheck
-
 # LÓGICA DE DETECÇÃO ALTERADA para suportar múltiplos GPUs.
 HAS_NVIDIA=$(lspci | grep -i 'nvidia')
 HAS_MESA=$(lspci | grep -Ei '(vga|3d)' | grep -vi nvidia)
@@ -82,13 +100,13 @@ if [ ! -f ${HOME}/.booster ]; then
         #exit 1
     #fi
     DEST_FILE="/etc/environment"
-    
+
     # LÓGICA DE EXECUÇÃO ALTERADA para chamar os patches de forma independente
     if [[ -n "$HAS_NVIDIA" ]]; then
         patch_nv
         PATCH_APPLIED=1
     fi
-    
+
     if [[ -n "$HAS_MESA" ]]; then
         patch_mesa
         PATCH_APPLIED=1
