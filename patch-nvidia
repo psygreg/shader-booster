@@ -1,0 +1,2 @@
+# increase Nvidia shader cache size to 10GB
+export __GL_SHADER_DISK_CACHE_SIZE=10000000000
