@@ -1,5 +1,5 @@
 # enforce RADV vulkan implementation
-export AMD_VULKAN_ICD=RADV
+AMD_VULKAN_ICD=RADV
 
 # increase AMD and Intel cache size to 10GB
-export MESA_SHADER_CACHE_MAX_SIZE=10G
+MESA_SHADER_CACHE_MAX_SIZE=10G
